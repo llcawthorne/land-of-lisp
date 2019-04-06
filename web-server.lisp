@@ -84,9 +84,11 @@
 
 ;; We're going to define a simple request handler to provide our serve function
 (defun hello-request-handler (path header params)
+  (format t "HTTP/1.1 200 OK~C~C" #\return #\linefeed)
+  (format t "~C~C" #\return #\linefeed)
   (if (equal path "greeting")
       (let ((name (assoc 'name params)))
         (if (not name)
-            (princ "<html><form>What is your name?<input name='name' /></form></html>")
-            (format t "<html>Nice to meet you, ~a!</html>" (cdr name))))
+              (princ "<html><form>What is your name?  <input name='name' /></form></html>")
+              (format t "<html>Nice to meet you, ~a!</html>" (cdr name))))
       (princ "Sorry...  I don't know that page.")))
