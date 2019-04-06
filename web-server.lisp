@@ -84,6 +84,9 @@
 
 ;; We're going to define a simple request handler to provide our serve function
 (defun hello-request-handler (path header params)
+  ;; the next two lines weren't in the book.  they were added to make the
+  ;; request handler work with modern browsers.
+  ;; https://stackoverflow.com/questions/55526032/getting-err-invalid-http-response-using-web-server-code-in-land-of-lisp-with-cli?noredirect=1#comment97794796_55526032
   (format t "HTTP/1.1 200 OK~C~C" #\return #\linefeed)
   (format t "~C~C" #\return #\linefeed)
   (if (equal path "greeting")
